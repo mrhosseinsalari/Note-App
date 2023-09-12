@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Note App</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="notes" id="app">
+      <div class="notes__sidebar">
+        <div class="notes__logo">NOTE APP</div>
+        <div class="notes__list">
+          <div class="notes__list-item">
+            <div class="note__small-title">New Note</div>
+            <div class="note__small-body">This is my first note !!</div>
+            <div class="note__small-updated">Monday 1:30 PM</div>
+          </div>
+        </div>
+        <button class="notes__add">ADD NOTE</button>
+      </div>
+      <div class="notes__preview">
+        <input type="text" class="note__title" placeholder="note title" />
+        <textarea class="note__body" placeholder="Take some note"></textarea>
+      </div>
+    </div>
+  </body>
+</html>
