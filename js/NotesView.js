@@ -37,6 +37,9 @@ class NotesView {
         this.onNoteEdit(newTitle, newBody);
       });
     });
+
+    // hide notes preview in first loading :
+    this.updateNotePreviewVisibility(false);
   }
 
   #createListItemHTML(id, title, body, updated) {
@@ -92,6 +95,26 @@ class NotesView {
         this.onNoteDelete(item.dataset.noteId);
       });
     });
+  }
+
+  updateActiveNote(note) {
+    this.root.querySelector(".note__title").value = note.title;
+    this.root.querySelector(".note__body").value = note.body;
+
+    // add selected class
+    this.root
+      .querySelectorAll(".notes__list-item")
+      .forEach((item) => item.classList.remove("notes__list-item--selected"));
+
+    this.root
+      .querySelector(`.notes__list-item[data-note-id="${note.id}"]`)
+      .classList.add("notes__list-item--selected");
+  }
+
+  updateNotePreviewVisibility(visible) {
+    this.root.querySelector(".notes__preview").style.visibility = visible
+      ? "visible"
+      : "hidden";
   }
 }
 
