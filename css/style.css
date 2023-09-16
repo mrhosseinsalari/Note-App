@@ -163,3 +163,39 @@ body {
   align-items: center;
   color: var(--mainRed);
 }
+
+@media screen and (max-width: 768px) {
+  .notes__sidebar {
+    width: 50%;
+  }
+  .notes__logo {
+    font-size: 1.6rem;
+  }
+  .notes__preview {
+    padding: 1.3rem;
+  }
+  .note__title,
+  .note__body {
+    padding: 0.5rem;
+  }
+  .note__title {
+    font-size: 2rem;
+  }
+  .note__body {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .notes {
+    flex-direction: column;
+  }
+  .notes__sidebar {
+    position: relative;
+    width: 100%;
+    border-radius: 0;
+  }
+  .notes__preview {
+    display: none;
+  }
+}
