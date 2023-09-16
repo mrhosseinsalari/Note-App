@@ -13,13 +13,23 @@ class App {
     const notes = NotesAPI.getAllNotes();
 
     // set Notes :
+    this._setNotes(notes);
+
+    // set Active Note :
+    if (notes.length > 0) {
+      this._setActiveNote(notes[0]);
+    }
+  }
+
+  _setNotes(notes) {
     this.notes = notes;
     this.view.updateNoteList(notes);
     this.view.updateNotePreviewVisibility(notes.length > 0);
+  }
 
-    // set Active Note :
-    this.activeNote = notes[0];
-    this.view.updateActiveNote(notes[0]);
+  _setActiveNote(note) {
+    this.activeNote = note;
+    this.view.updateActiveNote(note);
   }
 
   _handlers() {
@@ -35,7 +45,13 @@ class App {
       },
 
       onNoteEdit: (newTitle, newBody) => {
-        console.log(newTitle, newBody);
+        NotesAPI.saveNote({
+          id: this.activeNote.id,
+          title: newTitle,
+          body: newBody,
+        });
+
+        this._refreshNotes();
       },
 
       onNoteSelect: (noteId) => {
@@ -43,12 +59,12 @@ class App {
           (note) => note.id === Number(noteId)
         );
 
-        this.activeNote = selectedNote;
-        this.view.updateActiveNote(selectedNote);
+        this._setActiveNote(selectedNote);
       },
 
       onNoteDelete: (noteId) => {
-        console.log(noteId);
+        NotesAPI.deleteNote(Number(noteId));
+        this._refreshNotes();
       },
     };
   }
