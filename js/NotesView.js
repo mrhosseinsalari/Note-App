@@ -12,11 +12,12 @@ class NotesView {
      <div class="notes__sidebar">
       <div class="notes__logo">NOTE APP</div>
       <div class="notes__list"></div>
-      <button class="notes__add">ADD NOTE</button>
+      <button class="notes__button notes__add">ADD NOTE</button>
      </div>
      <div class="notes__preview">
       <input type="text" class="note__title" placeholder="note title" />
       <textarea class="note__body" placeholder="Take some note"></textarea>
+      <button class="notes__button notes__save">SAVE NOTE</button>
      </div>
     `;
 
@@ -49,9 +50,14 @@ class NotesView {
      <div class="notes__list-item" data-note-id="${id}">
       <div class="notes__item-header">
         <div class="note__small-title">${title}</div>
-        <span class="notes__list-trash" data-note-id="${id}">
+        <div class="notes__icons">
+         <span class="notes__icon notes__list-edit" data-note-id="${id}">
+          <i class="fas fa-edit"></i>
+         </span>
+         <span class="notes__icon notes__list-trash" data-note-id="${id}">
           <i class="far fa-trash-alt"></i>
-        </span>
+         </span>
+        </div>
       </div>
       <div class="note__small-body">
         ${body.substring(0, MAX_BODY_LENGTH)}
@@ -94,6 +100,20 @@ class NotesView {
         e.stopPropagation();
         this.onNoteDelete(item.dataset.noteId);
       });
+    });
+
+    notesContainer.querySelectorAll(".notes__list-edit").forEach((item) => {
+      item.addEventListener("click", (e) => {
+        e.stopPropagation();
+        this.root.querySelector(".notes__sidebar").style.display = "none";
+        this.root.querySelector(".notes__preview").style.display = "flex";
+        this.onNoteSelect(item.dataset.noteId);
+      });
+    });
+
+    this.root.querySelector(".notes__save").addEventListener("click", (e) => {
+      this.root.querySelector(".notes__sidebar").style.display = "flex";
+      this.root.querySelector(".notes__preview").style.display = "none";
     });
   }
 

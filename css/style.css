@@ -62,6 +62,7 @@ body {
   margin-top: 1rem;
   overflow-y: auto;
   margin-bottom: 1rem;
+  scrollbar-width: none;
 }
 .notes__list::-webkit-scrollbar {
   display: none;
@@ -99,7 +100,7 @@ body {
   font-style: italic;
   text-align: left;
 }
-.notes__add {
+.notes__button {
   background-color: #009578;
   border: none;
   border-radius: 7px;
@@ -112,7 +113,7 @@ body {
   width: 100%;
   transition: all 0.3s ease-in-out;
 }
-.notes__add:hover {
+.notes__button:hover {
   background-color: #00af8c;
 }
 
@@ -153,7 +154,10 @@ body {
   margin-bottom: 10px;
 }
 
-.notes__list-trash {
+.notes__icons {
+  display: flex;
+}
+.notes__icon {
   width: 35px;
   height: 35px;
   background: #fff;
@@ -162,6 +166,14 @@ body {
   justify-content: center;
   align-items: center;
   color: var(--mainRed);
+}
+.notes__list-edit {
+  color: #e4a11b;
+  margin-left: 0.5rem;
+  display: none;
+}
+.notes__save {
+  display: none;
 }
 
 @media screen and (max-width: 768px) {
@@ -184,12 +196,13 @@ body {
   .note__body {
     font-size: 1rem;
   }
+  .notes__button {
+    width: 80%;
+    align-self: center;
+  }
 }
 
 @media screen and (max-width: 480px) {
-  .notes {
-    flex-direction: column;
-  }
   .notes__sidebar {
     position: relative;
     width: 100%;
@@ -197,5 +210,23 @@ body {
   }
   .notes__preview {
     display: none;
+    padding: 1rem;
+  }
+  .notes__list-edit {
+    display: flex;
+  }
+  .note__title,
+  .note__body {
+    border-radius: 0.5rem;
+  }
+  .note__body {
+    height: 80vh;
+  }
+  .notes__button {
+    width: 50%;
+  }
+  .notes__save {
+    display: block;
+    margin-top: 1.3rem;
   }
 }
